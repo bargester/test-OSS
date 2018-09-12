@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>OSS Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
+    <style>
+      label {
+          width: 100px;
+      }
+      
+      label.error {
+          color: red;
+      }
+      
+      input {
+          border: 1px solid #ccc;
+      }
+      
+      input.error {
+          border-color: red;
+      }
+      
+      .content {
+          padding: 15px;
+          border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="content">
+            <form id="testForm" onsubmit="return myForm()">
+              <div>
+                <label for="firstName">First name</label>
+                <input id="firstName" type="text">
+                <p id="firstNameError" style="color:red"></p>
+              </div>
+              <div>
+                <label for="lastName">Last name</label>
+                <input id="lastName" type="text">
+                <p id="lastNameError" style="color:red"></p>
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" type="text">
+                <p id="emailError" style="color:red"></p>
+              </div>
+              <button id="submit" type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function myForm() {
+          var fname = document.forms['testForm']['firstName'].value,
+              lname = document.forms['testForm']['lastName'].value,
+              email = document.forms['testForm']['email'].value,
+              firstNameError = document.getElementById('firstNameError'),
+              lastNameError = document.getElementById('lastNameError'),
+              emailError = document.getElementById('emailError'),
+              error = false,
+              errorEmail = false,
+              regEmail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      
+          if (fname.length == 0) {
+              firstNameError.innerHTML = 'Вы не указали имя';
+              error = true;
+          }
+          else firstNameError.innerHTML = '';
+          if (lname.length == 0) {
+              lastNameError.innerHTML = 'Вы не указали фамилию';
+              error = true;
+          }
+          else lastNameError.innerHTML  = '';
+          if (regEmail.test(email) == false) {
+              emailError.innerHTML = 'Вы неверно указали почту';
+              error = true;
+              errorEmail = true;
+          }
+          if (email.length == 0) {
+              emailError.innerHTML = 'Вы не указали почту';
+              error = true;
+              errorEmail = true;
+          }
+          if (!errorEmail) emailError.innerHTML = '';
+          if (error){
+              return false
+          }
+      }
+    </script>
+  </body>
+</html>
