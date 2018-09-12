@@ -1,0 +1,21 @@
+body{
+  background: url("../img/general/Background.png");
+  background-size: cover;
+  padding: 20px 14px 110px;
+}
+.container{
+  max-width: 920px;
+  width: 100%;
+  margin: 0 auto;
+}
+.link_more{
+  position: absolute;
+  bottom: 25px;
+  right: 13px;
+  font-family: Rockwell, sans-serif;
+  font-size: 12px;
+  text-decoration: underline;
+  &--welcome{
+    bottom: 10px;
+  }
+}
